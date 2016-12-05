@@ -1,0 +1,28 @@
+最近研究移动端页面时学到了很多CSS3的有用属性，其中有一个印象比较深刻的属性：
+
+-webkit-tap-highlight-color
+
+参见 http://css-infos.net/property/-webkit-tap-highlight-color
+这个属性是用于设定元素在移动设备（如Adnroid、iOS）上被触发点击事件时，响应的背景框的颜色。
+
+例如在Adnroid版本的微信中，点击a标签时将会出现一个橙色的小框表示点击的响应。
+
+此时，如果对元素设置了tap-highlight-color值，例如:
+
+-webkit-tap-highlight-color: rgba(240,240,240,0.7);
+则可改变元素被点击时背景框的颜色。
+
+如果需要背景框不显示，则可以将rgba中的alpha值设为0即可，例如rgba(0,0,0,0)
+
+
+
+另外还有一个设置选中文字颜色的方法。
+
+通常我们选中文字时的背景色是蓝色。我们可以用以下样式去设置网页的选中内容的样式：
+
+::selection             { background:#FFF; color:#333; }
+::-moz-selection    { background:#FFF; color:#333; }
+::-webkit-selection { background:#FFF; color:#333;}
+如果要去掉选中时的颜色，把background都置为none就行了。
+
+ 

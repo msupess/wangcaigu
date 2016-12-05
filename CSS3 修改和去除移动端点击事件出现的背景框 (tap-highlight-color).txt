@@ -13,7 +13,8 @@
 则可改变元素被点击时背景框的颜色。
 
 如果需要背景框不显示，则可以将rgba中的alpha值设为0即可，例如rgba(0,0,0,0)
-
+对于windows phone, 可能还需要
+<meta name="msapplication-tap-highlight" content="no" />
 
 
 另外还有一个设置选中文字颜色的方法。
@@ -25,4 +26,3 @@
 ::-webkit-selection { background:#FFF; color:#333;}
 如果要去掉选中时的颜色，把background都置为none就行了。
 
- 

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<style type="text/css">
+			body,html{
+				width:100%;
+				height:2000px;
+				background:#f5f5f5;
+			}
+			button{
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				tap-highlight-color: rgba(0,0,0,0);
+			}
+			.active-pop4{
+				position:fixed;
+				margin:auto;
+				left:0;
+				top:0;
+				bottom:0;
+				right:0;
+				width:6.20rem;
+				height:7.25rem;
+				background:url(images/look-myprize-bg2.png) no-repeat left top;
+				background-size:100% 100%;
+				z-index:10001;
+				display:none;
+			}
+			
+			.active-pop4 ul li{
+				margin-bottom:0.45rem;
+			}
+			.active-pop4 ul li:nth-of-type(even){
+				float:right;
+				margin-right:0.2rem;
+			}
+			.active-pop4 ul li:nth-of-type(odd){
+				float:left;
+			}
+			.active-pop4 ul li:nth-last-child(1){
+				margin-bottom:0;
+			}
+			.active-pop4 ul li span{
+				display:block;
+				width:0.496rem;
+				height:0.528rem;
+				background:url(images/prize-shengyu-num-bg.png) no-repeat left top;
+				background-size:100% 100%;
+				position:absolute;
+				right:-0.10rem;
+				top:0.18rem;
+				line-height:0.528rem;
+				text-align: center;
+				font-size:0.24rem;
+			}
+			.active-pop4 .sure{
+				width:3.17rem;
+				height:0.92rem;
+				line-height:0.88rem;
+				color:#fff;
+				font-size:0.48rem;
+				letter-spacing: 0.14rem;
+				text-align: center;
+				background:url(images/sure-btn.png) no-repeat left top;
+				background-size:100% 100%;
+				display:block;
+				position:absolute;
+				bottom:1.04rem;
+				left:50%;
+				margin-left:-1.585rem;
+			}
+			.active-pop4 .close-pop{
+				position:absolute;
+				right: -0.12rem;
+				top: -0.1rem;
+			}
+			.active-pop4 .close-pop img{
+				width:0.33rem;
+				height:0.34rem;
+				padding:0.3rem;
+			}
+			
+			.active-pop4 ul li{
+				display:inline-block;
+				position:relative;
+			}
+			.active-pop4 ul li img{
+				width:1.99rem;
+				height:1.78rem;
+			}
+			
+			.active-pop4 ul li span{
+				display:block;
+				width:0.496rem;
+				height:0.528rem;
+				background:url(images/prize-shengyu-num-bg.png) no-repeat left top;
+				background-size:100% 100%;
+				position:absolute;
+				right:-0.10rem;
+				top:0.18rem;
+				line-height:0.528rem;
+				text-align: center;
+				font-size:0.24rem;
+			}
+			.active-pop4 .sure{
+				width:3.17rem;
+				height:0.92rem;
+				line-height:0.88rem;
+				color:#fff;
+				font-size:0.48rem;
+				letter-spacing: 0.14rem;
+				text-align: center;
+				background:url(images/sure-btn.png) no-repeat left top;
+				background-size:100% 100%;
+				display:block;
+				position:absolute;
+				bottom:1.04rem;
+				left:50%;
+				margin-left:-1.585rem;
+			}
+			.mask{
+				position:fixed;
+				top:0;
+				right:0;
+				bottom:0;
+				left:0;
+				width:100%;
+				height:100%;
+				z-index:9999;
+				background:#000;
+				opacity:0.5;
+				display:none;
+			}
+			.active-pop4 ul{
+				position: absolute;
+			}
+			/*#wraper设置宽高，等*/
+			#wrapper{
+				overflow:hidden;
+				position:relative;
+				width:78.7%;
+				height:4.13rem;
+				margin:0.55rem auto 0;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/lib.flexible2.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".click").on("click",function(){
+					//点击之后调用iscroll插件
+					$(".mask, .active-pop4").show();
+					var myScroll = new IScroll("#wrapper", {
+							bounce:false,/*是否有弹性滚动*/
+							vScrollbar:false,/*是否显示垂直滚动条*/
+							click:iScrollClick(), //调用判断函数
+							//scrollbars: false,//有滚动条
+					        mouseWheel: false,//允许滑轮滚动
+					        fadeScrollbars: true//滚动时显示滚动条，默认隐藏，并且是淡出淡入效果
+					   });
+			  		 document.addEventListener('touchmove',eventTarget, false);
+				});
+				$(".close-pop,.sure").on("click",function(){
+					document.removeEventListener('touchmove',eventTarget, false);
+					$(".mask, .active-pop4").hide();
+				});
+			});
+			function eventTarget(e){
+				 e.preventDefault();
+			}
+			function iScrollClick(){
+				if (/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)) return false;
+				if (/Chrome/i.test(navigator.userAgent)) return (/Android/i.test(navigator.userAgent));
+				if (/Silk/i.test(navigator.userAgent)) return false;
+				if (/Android/i.test(navigator.userAgent)) {
+				   var s=navigator.userAgent.substr(navigator.userAgent.indexOf('Android')+8,3);
+				   return parseFloat(s[0]+s[3]) < 44 ? false : true
+			    }
+			}
+		</script>
+	</head>
+	<body>
+		<div class="mask">
+			
+		</div>
+		<button class="click" style="width:300px; height:50px; font-size:30px;">点击</button>
+		<!--查看我的奖品(奖品>=3)/第四种类型弹框-->
+		<div class="active-pop4" id="active-pop4">
+		    <p class="close-pop">
+		        <img src="images/close-pop.png">
+		    </p>
+		    <div id="wrapper">
+		    	<!--wraper设置宽高-->
+		        <ul class="clearfix" id="prize-more">
+		        	<p><strong>This demo shows the minimum CSS/HTML/JS configuration you need to run the iScroll. Look at the source code for details.</strong></p>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		        </ul>
+		    </div>
+		    <button class="sure sure-close">确认</button>
+		</div>
+	</body>
+</html>
